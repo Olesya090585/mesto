@@ -1,0 +1,13 @@
+.profile-info__text-edit {
+ display: flex;
+ gap: 18px;
+ flex-direction: row;
+ align-items: baseline;
+}
+
+@media screen and (max-width: 465px) {
+    .profile-info__text-edit {
+
+        gap: 10px;
+    }
+}
