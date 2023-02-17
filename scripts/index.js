@@ -14,8 +14,8 @@ const profileInfoJob = document.querySelector('.profile-info__job');
 
 function openPopup(){
     editPopupOpen.classList.add('popup_opened');
-    nameInput.textContent = profilInfoName;
-    jobInput.textContent = profileInfoJob;
+    nameInput.value = profilInfoName.textContent;
+    jobInput.value = profileInfoJob.textContent;
 }
 
 function closePopup(){
