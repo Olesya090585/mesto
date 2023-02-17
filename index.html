@@ -19,22 +19,22 @@
                     <img class="profile-info__avatar" src="./images/avatar/avatar.jpg" alt="фото пользователя">
                     <div class="profile-info__text">
                         <div class="profile-info__text-edit">
-                            <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+                            <h1 class="profile-info__name">Жак-Ив Кусто</h1>
                             <button class="profile-info__edit-button" type="button"
                                 aria-label="редактировать профиль"></button>
                         </div>
-                        <p class="profile-info__subtitle">Исследователь океана</p>
+                        <p class="profile-info__job">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add-button" type="button"></button>
+                <button aria-label="добавить новое место"  class="profile__add-button" type="button"></button>
             </section>
-            <section class="elements" aria-label="element">
+            <section class="elements" aria-label="гелерея мест">
                 <article class="element">
                     <img class="element__img" src="./images/elements/karachaevsk.png"
                         alt="Карачаевск. Старинное здание на фоне гор.">
                     <div class="element__description">
                         <h2 class="element__text">Карачаевск</h2>
-                        <button class="element__like" type="button" aria-label="добавить новое место"></button>
+                        <button class="element__like element__like_active" type="button" aria-label="поставить лайк"></button>
                     </div>
                 </article>
                 <article class="element">
@@ -49,14 +49,14 @@
                         alt="Домбай. Хвойный лес на фоне серых гор.">
                     <div class="element__description">
                         <h2 class="element__text">Домбай</h2>
-                        <button class="element__like" type="button"></button>
+                        <button class="element__like" type="button" aria-label="поставить лайк"></button>
                     </div>
                 </article>
                 <article class="element">
                     <img class="element__img" src="./images/elements/elbrus.png" alt="Гора Эльбрус вдалеке.">
                     <div class="element__description">
                         <h2 class="element__text">Гора Эльбрус</h2>
-                        <button class="element__like" type="button"></button>
+                        <button class="element__like" type="button" aria-label="поставить лайк"></button>
                     </div>
                 </article>
                 <article class="element">
@@ -64,7 +64,7 @@
                         alt="Домбай. Хвойный лес на фоне серых гор.">
                     <div class="element__description">
                         <h2 class="element__text">Домбай</h2>
-                        <button class="element__like" type="button"></button>
+                        <button class="element__like" type="button" aria-label="поставить лайк"></button>
                     </div>
                 </article>
                 <article class="element">
@@ -72,7 +72,7 @@
                         alt="Карачаевск. Старинное здание на фоне гор.">
                     <div class="element__description">
                         <h2 class="element__text">Карачаево-Черкесск</h2>
-                        <button class="element__like" type="button"></button>
+                        <button class="element__like" type="button" aria-label="поставить лайк"></button>
                     </div>
                 </article>
             </section>
@@ -81,21 +81,21 @@
             <span class="footer__copyright">&#169; 2020 Mesto Russia</span>
         </footer>
     </div>
-    <section class="popup">
+    <div class="popup">
         <div class="popup__container">
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__content" name="form">
-                <fieldset class="popup__input">
-                    <input type="text" name="title" class="popup__input-text popup__input-title" value="Жак-Ив Кусто"
-                        placeholder="" required>
-                    <input type="text" name="subtitle" class="popup__input-text popup__input-subtitle"
-                        value="Исследователь океана" placeholder="" required>
+            <form class="popup__content" name="profileEditingForm">
+                <fieldset class="popup__group">
+                    <input type="text" name="title" class="popup__input popup__input_text_name" value=""
+                        placeholder="Жак-Ив Кусто" required>
+                    <input type="text" name="subtitle" class="popup__input popup__input_text_job"
+                        value="" placeholder="Исследователь океана" required>
                 </fieldset>
                 <button class="popup__button-save" type="submit" aria-label="сохранить данные">Сохранить</button>
             </form>
             <button class="popup__button-close" type="button" aria-label="закрыть попап"></button>
         </div>
-    </section>
+    </div>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+.popup__group {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: none;
+    padding: 0;
+    margin: 48px 0 48px 0;
+}
+
+
+@media screen and (max-width: 465px) {
+    .popup__group {
+        margin: 75px 0 45px 0;
+    }
+}

@@ -15,6 +15,3 @@
     opacity: 0.5;
 }
 
-.element__like:focus {
-    background-image: url('../../../images/elements/like-active.svg');
-}

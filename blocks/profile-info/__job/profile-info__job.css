@@ -1,16 +1,21 @@
-.profile-info__subtitle {
+.profile-info__job {
+    max-width: 336px;
     color: #ffff;
     margin: 0;
     padding: 0;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.21em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 
 @media screen and (max-width: 465px) {
-    .profile-info__subtitle {
+    .profile-info__job {
         font-size: 14px;
         align-self: center;
+        max-width: 282px;
     }
 }

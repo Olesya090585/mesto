@@ -6,6 +6,7 @@
     background-image: url(../../../images/input-button-close\ disabled.svg);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: 32px 32px;
     border: none;
     position: absolute;
     top: -38px;
@@ -15,7 +16,7 @@
 
 
 .popup__button-close:hover {
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 465px) {
@@ -23,5 +24,6 @@
         width: 20px;
         height: 20px;
         right: -1px;
+        background-size: 20px 20px;
     }
 }
