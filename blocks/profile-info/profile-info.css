@@ -3,7 +3,7 @@
     align-items: center;
 }
 
-@media screen and (max-width: 465px) {
+@media screen and (max-width: 542px) {
     .profile-info {
         flex-direction: column;
         gap: 22px;

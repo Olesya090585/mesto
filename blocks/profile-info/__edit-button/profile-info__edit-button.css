@@ -10,6 +10,7 @@
     cursor: pointer;
     padding: 0;
     margin: 0;
+    flex-shrink: 0;
 }
 
 
@@ -22,6 +23,7 @@
         width: 18px;
         height: 18px;
         background-size: 7.5px 7.5px;
+        max-width: 100%;
     }
 }
 

@@ -38,9 +38,9 @@ closePopup();
 
 //добавление обработчиков (слушателей)
 
-profileInfoEditButton.addEventListener('click', openPopup)
+profileInfoEditButton.addEventListener('click', openPopup);
 
-editPopupClose.addEventListener('click', closePopup)
+editPopupClose.addEventListener('click', closePopup);
 
 formElement.addEventListener('submit', handleFormSubmit);
 

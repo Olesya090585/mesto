@@ -8,7 +8,7 @@
 }
 
 
-@media screen and (max-width: 465px) {
+@media screen and (max-width: 550px) {
     .popup__group {
         margin: 75px 0 45px 0;
     }
