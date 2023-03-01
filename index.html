@@ -2,13 +2,14 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-    <title>Место</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место</title>
 </head>
 
 <body class="page">
+<<<<<<< HEAD
     <header class="header">
         <img class="header__logo" src="./images/logo/logo_header.svg" alt="логотип на котором написано место россия">
     </header>
@@ -97,5 +98,84 @@
         </div>
     </div>
     <script src="./scripts/index.js"></script>
+=======
+  <header class="header">
+    <img class="header__logo" src="./images/logo/logo_header.svg" alt="логотип на котором написано место россия">
+  </header>
+  <div class="container">
+    <main class="content">
+      <section class="profile">
+        <div class="profile-info">
+          <img class="profile-info__avatar" src="./images/avatar/avatar.jpg" alt="фото пользователя">
+          <div class="profile-info__text">
+            <div class="profile-info__text-edit">
+              <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+              <button class="profile-info__edit-button" type="button" aria-label="редактировать профиль"></button>
+            </div>
+            <p class="profile-info__subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button" type="button"></button>
+      </section>
+      <section class="elements" aria-label="element">
+        <template id="elementTemplate">
+          <article class="element">
+            <button class="element__delete element__delete_button" type="button" aria-label="удалить элемент"></button>
+            <img class="element__img element__img_zoom" src="" alt="">
+            <div class="element__description">
+              <h2 class="element__text"></h2>
+              <button class="element__like element__like_button" type="button"
+                aria-label="добавить новое место"></button>
+            </div>
+          </article>
+        </template>
+      </section>
+    </main>
+    <footer class="footer">
+      <span class="footer__copyright">&#169; 2020 Mesto Russia</span>
+    </footer>
+  </div>
+  <div class="popup popup_edit-profile">
+    <div class="popup__container">
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__content popup__content-edit" name="form">
+        <fieldset class="popup__input">
+          <input type="text" name="title" class="popup__input-text popup__input-title-edit" value="Жак-Ив Кусто"
+            placeholder="Жак-Ив Кусто" required>
+          <input type="text" name="subtitle" class="popup__input-text popup__input-subtitle-edit"
+            value="Исследователь океана" placeholder="Исследователь океана" required>
+        </fieldset>
+        <button class="popup__button-save popup__button-save-edit" type="submit"
+          aria-label="сохранить данные">Сохранить</button>
+      </form>
+      <button class="popup__button-close popup__button-close-edit" type="button" aria-label="закрыть попап"></button>
+    </div>
+  </div>
+  <div class="popup popup_add-place">
+    <div class="popup__container">
+      <h3 class="popup__title">Новое место</h3>
+      <form class="popup__content popup__content-add" name="form">
+        <fieldset class="popup__input">
+          <input type="text" name="title" class="popup__input-text popup__input-title-add" value="Название"
+            placeholder="Название" required>
+          <input type="text" name="image" class="popup__input-text popup__input-image-add" value="Ссылка на картинку"
+            placeholder="Ссылка на картинку" required>
+        </fieldset>
+        <button class="popup__button-save popup__button-save-add" type="submit"
+          aria-label="сохранить данные">Создать</button>
+      </form>
+      <button class="popup__button-close popup__button-close-add" type="button" aria-label="закрыть попап"></button>
+    </div>
+  </div>
+  <div class="popup popup_zoom">
+    <div class="popup__image-container">
+      <img class="popup__img popup__img_zoom" src="#" alt="">
+      <p class="popup__heading popup__heading_zoom"></p>
+      <button class="popup__button-close popup__button-close_image-zoom" type="button"
+        aria-label="закрыть попап"></button>
+    </div>
+  </div>
+  <script src="./scripts/index.js"></script>
+>>>>>>> develop
 </body>
 </html>

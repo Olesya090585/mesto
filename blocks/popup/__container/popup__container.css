@@ -11,7 +11,11 @@
 }
 
 
+<<<<<<< HEAD
 @media screen and (max-width: 550px) {
+=======
+@media screen and (max-width: 517px) {
+>>>>>>> develop
     .popup__container {
         max-width: 282px;
         padding: 25px 22px 25px 22px;
