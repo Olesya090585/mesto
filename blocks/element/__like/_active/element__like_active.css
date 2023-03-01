@@ -3,7 +3,6 @@
     background-image: url('../../../../images/elements/like-active.svg');
 =======
 .element__like_active{
-  /* background-color: #ffffff; */
   background-image: url(../../../../images/elements/like-active.svg);
 >>>>>>> develop
 }
