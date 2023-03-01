@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-
-//объявляем все переменные
-
-const profileInfoEditButton = document.querySelector('.profile-info__edit-button');
-const editPopupOpen = document.querySelector('.popup');
-const editPopupClose = document.querySelector('.popup__button-close');
-const formElement = document.querySelector('.popup__content');
-const nameInput = formElement.querySelector('.popup__group .popup__input_text_name');
-const jobInput = formElement.querySelector('.popup__group .popup__input_text_job');
-const profilInfoName = document.querySelector('.profile-info__name');
-const profileInfoJob = document.querySelector('.profile-info__job');
-
-// функции
-
-function openPopup(){
-    editPopupOpen.classList.add('popup_opened');
-    nameInput.value = profilInfoName.textContent;
-    jobInput.value = profileInfoJob.textContent;
-=======
 // popup
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupAddPlace = document.querySelector('.popup_add-place');
@@ -78,7 +58,6 @@ const initialCards = [
 // функция открытия и закрытия поп-апа
 const togglePopup = function(popup) {
   popup.classList.toggle('popup_opened');
->>>>>>> develop
 }
 //открываем popup по клику на кнопку
 //popup редактирования profile
@@ -90,12 +69,6 @@ addPlaceButton.addEventListener('click', function(){
   togglePopup(popupAddPlace);
 });
 
-<<<<<<< HEAD
-function closePopup(){
-    editPopupOpen.classList.remove('popup_opened');
-}
-
-=======
 // закрываем поп-ап по клику по кнопке
 //popup редактирования profile
 editPopupClose.addEventListener('click', closePopupEditProfile);
@@ -118,32 +91,12 @@ function closePopupimgZoom(){
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
->>>>>>> develop
 function handleFormSubmit (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // Получите значение полей jobInput и nameInput из свойства value                                               // О том, как это делать, расскажем позже.
 let nameInputValue = nameInput.value;
 let jobInputValue = jobInput.value;
-<<<<<<< HEAD
-
-// Вставьте новые значения с помощью textContent
-profilInfoName.textContent = nameInputValue;
-profileInfoJob.textContent = jobInputValue;
-
-closePopup();
-}
-
-//добавление обработчиков (слушателей)
-
-profileInfoEditButton.addEventListener('click', openPopup);
-
-editPopupClose.addEventListener('click', closePopup);
-
-formElement.addEventListener('submit', handleFormSubmit);
-
-
-=======
 //выберите элементы, куда должны быть вставлены значения полей
 let profilInfoTitle = document.querySelector('.profile-info__title');
 let profileInfoSubtitle = document.querySelector('.profile-info__subtitle');
@@ -207,4 +160,3 @@ function createPopupImage (event){
   popupHeadingZoom.textContent = popupImgZoom.alt;
   togglePopup(popupZoom);
 };
->>>>>>> develop

@@ -10,9 +10,9 @@
 @import url(../blocks/profile-info/__avatar/profile-info__avatar.css);
 @import url(../blocks/profile-info/__text/profile-info__text.css);
 @import url(../blocks/profile-info/__text-edit/profile-info__text-edit.css);
-@import url(../blocks/profile-info/__name/profile-info__name.css);
+@import url(../blocks/profile-info/__title/profile-info__title.css);
 @import url(../blocks/profile-info/__edit-button/profile-info__edit-button.css);
-@import url(../blocks/profile-info/__job/profile-info__job.css);
+@import url(../blocks/profile-info/__subtitle/profile-info__subtitle.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__img/element__img.css);
@@ -20,18 +20,18 @@
 @import url(../blocks/element/__text/element__text.css);
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
-<<<<<<< HEAD
-=======
 @import url(../blocks/element/__delete/element__delete.css);
->>>>>>> develop
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__content/popup__content.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__group/popup__group.css);
 @import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__input-title.css/popup__input-title.css);
+@import url(../blocks/popup/__input-subtitle/popup__input-subtitle.css);
+@import url(../blocks/popup/__input-text/popup__input-text.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/__button-save/popup__button-save.css);
 @import url(../blocks/popup/_zoom/popup_zoom.css);
