@@ -7,7 +7,7 @@
 
 @media screen and (max-width: 465px) {
     .profile-info__text-edit {
-
+        align-items: flex-end;
         gap: 10px;
     }
 }

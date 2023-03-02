@@ -13,7 +13,7 @@
 }
 
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 750px) {
     .container {
         max-width: calc(100% - (19px * 2));
         margin: 0 19px;

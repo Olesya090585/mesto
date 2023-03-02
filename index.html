@@ -27,7 +27,7 @@
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
-      <section class="elements" aria-label="element">
+      <section class="elements" aria-label="галерея новых мест">
         <template id="elementTemplate">
           <article class="element">
             <button class="element__delete element__delete_button" type="button" aria-label="удалить элемент"></button>
@@ -35,7 +35,7 @@
             <div class="element__description">
               <h2 class="element__text"></h2>
               <button class="element__like element__like_button" type="button"
-                aria-label="добавить новое место"></button>
+                aria-label="поставить лайк"></button>
             </div>
           </article>
         </template>
@@ -50,10 +50,10 @@
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__content popup__content-edit" name="form">
         <fieldset class="popup__input">
-          <input type="text" name="title" class="popup__input-text popup__input-title-edit" value="Жак-Ив Кусто"
-            placeholder="Жак-Ив Кусто" required>
+          <input type="text" name="title" class="popup__input-text popup__input-title-edit" value=""
+            placeholder="Ваше имя" required>
           <input type="text" name="subtitle" class="popup__input-text popup__input-subtitle-edit"
-            value="Исследователь океана" placeholder="Исследователь океана" required>
+            value="" placeholder="Ваше хобби" required>
         </fieldset>
         <button class="popup__button-save popup__button-save-edit" type="submit"
           aria-label="сохранить данные">Сохранить</button>
@@ -64,7 +64,7 @@
   <div class="popup popup_add-place">
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__content popup__content-add" name="form">
+      <form class="popup__content popup__content-add" name="place">
         <fieldset class="popup__input">
           <input type="text" name="title" class="popup__input-text popup__input-title-add" value="Название"
             placeholder="Название" required>
@@ -85,7 +85,8 @@
         aria-label="закрыть попап"></button>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/constants.js"></script>
+  <script  src="./scripts/index.js"></script>
 </body>
 
 </html>
