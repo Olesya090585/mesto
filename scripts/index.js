@@ -100,11 +100,7 @@ const createCard = (card) => {
 const addCard = (card) => {
   cardSection.prepend(createCard(card));
 };
-<<<<<<< HEAD
-//переворачиваем массив и проходим по массиву функцией addCard
-=======
 //переворачиваем массив и проходим по нему функцией addCard
->>>>>>> develop
 initialCards.reverse().forEach(addCard);
 //создаем новую карточку по событию submit
 formCreateCard.addEventListener("submit", handleFormElementSubmit);
