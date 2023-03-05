@@ -1,4 +1,3 @@
-// import {initialCardsExport} from './constans.js';
 
 // popup
 const popupEditProfile = document.querySelector(".popup_edit-profile");
@@ -12,9 +11,7 @@ const popupCardOpenButton = document.querySelector(".profile__add-button");
 // popup close
 const popupCloseEdit = document.querySelector(".popup__button-close-edit");
 const popupCloseAdd = document.querySelector(".popup__button-close-add");
-const popupCloseZoomImageButton = document.querySelector(
-  ".popup__button-close_image-zoom"
-);
+const popupCloseZoomImageButton = document.querySelector(".popup__button-close_image-zoom");
 //elements
 const cardSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#elementTemplate").content; // записываем в переменную cardTeplate шаблон карточки
@@ -25,10 +22,8 @@ const popupInputImageAdd = formCreateCard.querySelector('.popup__input-image-add
 //переменная формы при сохранении измененных данных в profile
 const formProfile = document.querySelector(".popup__content-edit");
 //находим поля формы в DOM
-const nameInput = formProfile.querySelector(".popup__input .popup__input-title-edit"
-);
-const jobInput = formProfile.querySelector(".popup__input .popup__input-subtitle-edit"
-);
+const nameInput = formProfile.querySelector(".popup__input .popup__input-title-edit");
+const jobInput = formProfile.querySelector(".popup__input .popup__input-subtitle-edit");
 //выберите элементы, куда должны быть вставлены значения полей
 const profilInfoTitle = document.querySelector(".profile-info__title");
 const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
