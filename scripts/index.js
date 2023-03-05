@@ -109,10 +109,8 @@ const createCard = (card) => {
 const addCard = (card) => {
   cardSection.prepend(createCard(card));
 };
-//переворачиваем массив и сохранем в переменную
-const containerCard = initialCards.reverse();
-//проходим по массиву функцией addCard
-containerCard.forEach(addCard);
+//переворачиваем массив и проходим по массиву функцией addCard
+initialCards.reverse().forEach(addCard);
 //создаем новую карточку по событию submit
 formCreateCard.addEventListener("submit", handleFormElementSubmit);
 //функция создания новой карточки из данных в popup
