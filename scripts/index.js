@@ -27,6 +27,7 @@ const jobInput = formProfile.querySelector(".popup__input .popup__input-subtitle
 //выберите элементы, куда должны быть вставлены значения полей
 const profilInfoTitle = document.querySelector(".profile-info__title");
 const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
+
 // функция открытия и закрытия поп-апа
 const togglePopup = function (popup) {
   popup.classList.toggle("popup_opened");
