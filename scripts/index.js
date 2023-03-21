@@ -1,10 +1,12 @@
 
 // popup
+const overlay = document.querySelector('.popup');
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPlace = document.querySelector(".popup_add-place");
 const popupZoom = document.querySelector(".popup_zoom");
 const popupImgZoom = document.querySelector(".popup__img_zoom");
 const popupHeadingZoom = document.querySelector(".popup__heading_zoom");
+const popupInputError = document.querySelectorAll('.popup__input-text_error');
 // button popup open
 const popupProfileEditButton = document.querySelector(".profile-info__edit-button");
 const popupCardOpenButton = document.querySelector(".profile__add-button");
@@ -28,9 +30,28 @@ const jobInput = formProfile.querySelector(".popup__input .popup__input-subtitle
 const profilInfoTitle = document.querySelector(".profile-info__title");
 const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
 
+//закрываем popup кликом по оверлэй
+const closePopupClickOverlay = (overlay) =>{
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('popup_opened');
+    }
+  });
+  }
+
+  //закрываем popup кликом на Esc
+  const closePopupEscape = (overlay) => {
+  document.addEventListener('keydown', (e) => {
+    if (e.code === "Escape" && overlay.classList.contains('popup_opened')) {
+      overlay.classList.remove('popup_opened');
+    }
+  });
+  }
 // функция открытия и закрытия поп-апа
 const togglePopup = function (popup) {
   popup.classList.toggle("popup_opened");
+  closePopupEscape (popup);
+  closePopupClickOverlay(popup);
 };
 //открываем popup по клику на кнопку
 //popup редактирования profile
@@ -57,7 +78,7 @@ popupCloseAdd.addEventListener("click", closePopupAddElement);
 function closePopupAddElement() {
   togglePopup(popupAddPlace);
 }
-//popup с увеличенно картинкой
+//popup с увеличенной картинкой
 popupCloseZoomImageButton.addEventListener("click", closePopupimgZoom);
 
 function closePopupimgZoom() {
@@ -137,3 +158,5 @@ function createPopupImage(event) {
   popupHeadingZoom.textContent = popupImgZoom.alt;
   togglePopup(popupZoom);
 }
+
+

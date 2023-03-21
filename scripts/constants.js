@@ -33,3 +33,11 @@ const initialCards = [
   }
 ];
 
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_disabled',
+  inputErrorClass: '.popup__input-text_error_type_',
+  errorClass: 'popup__error_visible'
+};
