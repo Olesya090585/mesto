@@ -38,6 +38,6 @@ const validationConfig = {
   inputSelector: '.popup__input-text',
   submitButtonSelector: '.popup__button-save',
   inactiveButtonClass: 'popup__button-save_disabled',
-  inputErrorClass: '.popup__input-text_error_type_',
+  inputErrorClass: '.popup__input-text_error_type-',
   errorClass: 'popup__error_visible'
 };
