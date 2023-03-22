@@ -21,6 +21,7 @@ const cardTemplate = document.querySelector("#elementTemplate").content; // за
 const formCreateCard = document.querySelector(".popup__content-add");
 const popupInputTitleAdd = formCreateCard.querySelector('.popup__input-title-add');
 const popupInputImageAdd = formCreateCard.querySelector('.popup__input-image-add');
+const buttonAddPlace = formCreateCard.querySelector(".popup__button-save-add");
 //переменная формы при сохранении измененных данных в profile
 const formProfile = document.querySelector(".popup__content-edit");
 //находим поля формы в DOM
@@ -34,7 +35,16 @@ const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
 const closePopupClickOverlay = (overlay) =>{
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
-      overlay.classList.remove('popup_opened');
+      closePopup(overlay);
+    }
+  });
+  }
+
+  //убираем закрытие popup кликом по оверлэй
+const deleteClosePopupClickOverlay = (overlay) =>{
+  overlay.removeEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closePopup(overlay);
     }
   });
   }
@@ -42,47 +52,70 @@ const closePopupClickOverlay = (overlay) =>{
   //закрываем popup кликом на Esc
   const closePopupEscape = (overlay) => {
   document.addEventListener('keydown', (e) => {
-    if (e.code === "Escape" && overlay.classList.contains('popup_opened')) {
-      overlay.classList.remove('popup_opened');
+    if (e.code === "Escape") {
+      closePopup(overlay);
     }
   });
   }
-// функция открытия и закрытия поп-апа
-const togglePopup = function (popup) {
-  popup.classList.toggle("popup_opened");
+
+   //убираем закрытие popup кликом на Esc
+   const deleteClosePopupEscape = (overlay) => {
+    document.removeEventListener('keydown', (e) => {
+      if (e.code === "Escape") {
+        closePopup(overlay);
+      }
+    });
+    }
+
+// функция открытия popup
+const openPopup = function (popup) {
+  popup.classList.add("popup_opened");
   closePopupEscape (popup);
   closePopupClickOverlay(popup);
+};
+
+// функция закрытия popup
+const closePopup = function (popup) {
+  popup.classList.remove("popup_opened");
+  deleteClosePopupEscape (popup);
+  deleteClosePopupClickOverlay(popup);
 };
 //открываем popup по клику на кнопку
 //popup редактирования profile
 popupProfileEditButton.addEventListener("click", function () {
   nameInput.value = profilInfoTitle.textContent;
   jobInput.value = profileInfoSubtitle.textContent;
-  togglePopup(popupEditProfile);
+  openPopup(popupEditProfile);
 });
 //popup добавления новой карточки
+
 popupCardOpenButton.addEventListener("click", function () {
-  togglePopup(popupAddPlace);
+  openPopup(popupAddPlace);
+  buttonAddPlace.classList.add("popup__button-save_disabled");
+  buttonAddPlace.setAttribute('disabled', '');
 });
+
 
 // закрываем поп-ап по клику по кнопке
 //popup редактирования profile
 popupCloseEdit.addEventListener("click", closePopupEditProfile);
 
 function closePopupEditProfile() {
-  togglePopup(popupEditProfile);
+  closePopup(popupEditProfile);
 }
 //popup добавления новой карточки
 popupCloseAdd.addEventListener("click", closePopupAddElement);
 
-function closePopupAddElement() {
-  togglePopup(popupAddPlace);
+function closePopupAddElement(validationConfig) {
+  closePopup(popupAddPlace);
+  popupInputTitleAdd.value = '';
+  popupInputImageAdd.value = '';
 }
 //popup с увеличенной картинкой
 popupCloseZoomImageButton.addEventListener("click", closePopupimgZoom);
 
 function closePopupimgZoom() {
-  togglePopup(popupZoom);
+  closePopup(popupZoom);
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -129,8 +162,8 @@ formCreateCard.addEventListener("submit", handleFormElementSubmit);
 //функция создания новой карточки из данных в popup
 function handleFormElementSubmit(event) {
   event.preventDefault();
-  const nameElement = formCreateCard.querySelector(".popup__input-title-add").value;
-  const imageElement = formCreateCard.querySelector(".popup__input-image-add").value;
+  const nameElement = popupInputTitleAdd.value;
+  const imageElement = popupInputImageAdd.value;
   const anotherElement = {
     name: nameElement,
     alt: nameElement,
@@ -139,8 +172,7 @@ function handleFormElementSubmit(event) {
   // createCard(anotherElement);
   addCard(anotherElement);
   closePopupAddElement();
-  popupInputTitleAdd.value = '';
-  popupInputImageAdd.value = '';
+  event.target.reset();
 }
 
 //функция удаления элемента
@@ -156,7 +188,7 @@ function createPopupImage(event) {
   popupImgZoom.src = event.target.src;
   popupImgZoom.alt = event.target.alt;
   popupHeadingZoom.textContent = popupImgZoom.alt;
-  togglePopup(popupZoom);
+  openPopup(popupZoom);
 }
 
 
