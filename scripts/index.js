@@ -1,85 +1,75 @@
-
 // popup
-const overlay = document.querySelector('.popup');
+const popup = document.querySelector(".popup");
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPlace = document.querySelector(".popup_add-place");
 const popupZoom = document.querySelector(".popup_zoom");
 const popupImgZoom = document.querySelector(".popup__img_zoom");
 const popupHeadingZoom = document.querySelector(".popup__heading_zoom");
-const popupInputError = document.querySelectorAll('.popup__input-text_error');
+const popupInputError = document.querySelectorAll(".popup__input-text_error");
 // button popup open
-const popupProfileEditButton = document.querySelector(".profile-info__edit-button");
+const popupProfileEditButton = document.querySelector(
+  ".profile-info__edit-button"
+);
 const popupCardOpenButton = document.querySelector(".profile__add-button");
 // popup close
 const popupCloseEdit = document.querySelector(".popup__button-close-edit");
 const popupCloseAdd = document.querySelector(".popup__button-close-add");
-const popupCloseZoomImageButton = document.querySelector(".popup__button-close_image-zoom");
+const popupCloseZoomImageButton = document.querySelector(
+  ".popup__button-close_image-zoom"
+);
 //elements
 const cardSection = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#elementTemplate").content; // записываем в переменную cardTeplate шаблон карточки
 //переменная кнопки создания новой карточки
 const formCreateCard = document.querySelector(".popup__content-add");
-const popupInputTitleAdd = formCreateCard.querySelector('.popup__input-title-add');
-const popupInputImageAdd = formCreateCard.querySelector('.popup__input-image-add');
+const popupInputTitleAdd = formCreateCard.querySelector(
+  ".popup__input-title-add"
+);
+const popupInputImageAdd = formCreateCard.querySelector(
+  ".popup__input-image-add"
+);
 const buttonAddPlace = formCreateCard.querySelector(".popup__button-save-add");
 //переменная формы при сохранении измененных данных в profile
 const formProfile = document.querySelector(".popup__content-edit");
 //находим поля формы в DOM
-const nameInput = formProfile.querySelector(".popup__input .popup__input-title-edit");
-const jobInput = formProfile.querySelector(".popup__input .popup__input-subtitle-edit");
+const nameInput = formProfile.querySelector(
+  ".popup__input .popup__input-title-edit"
+);
+const jobInput = formProfile.querySelector(
+  ".popup__input .popup__input-subtitle-edit"
+);
 //выберите элементы, куда должны быть вставлены значения полей
 const profilInfoTitle = document.querySelector(".profile-info__title");
 const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
 
-//закрываем popup кликом по оверлэй
-const closePopupClickOverlay = (overlay) =>{
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      closePopup(overlay);
-    }
-  });
+// функция закрытия по клику на overlay
+const closeOnClickOverlay = (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
   }
-
-  //убираем закрытие popup кликом по оверлэй
-const deleteClosePopupClickOverlay = (overlay) =>{
-  overlay.removeEventListener('click', (e) => {
-    if (e.target === overlay) {
-      closePopup(overlay);
-    }
-  });
+};
+// функция закрытия по Escape
+const closePopupEscape = (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
   }
-
-  //закрываем popup кликом на Esc
-  const closePopupEscape = (overlay) => {
-  document.addEventListener('keydown', (e) => {
-    if (e.code === "Escape") {
-      closePopup(overlay);
-    }
-  });
-  }
-
-   //убираем закрытие popup кликом на Esc
-   const deleteClosePopupEscape = (overlay) => {
-    document.removeEventListener('keydown', (e) => {
-      if (e.code === "Escape") {
-        closePopup(overlay);
-      }
-    });
-    }
+};
 
 // функция открытия popup
 const openPopup = function (popup) {
   popup.classList.add("popup_opened");
-  closePopupEscape (popup);
-  closePopupClickOverlay(popup);
+  document.addEventListener("keydown", closePopupEscape);
+  popup.addEventListener("click", closeOnClickOverlay);
 };
 
 // функция закрытия popup
 const closePopup = function (popup) {
   popup.classList.remove("popup_opened");
-  deleteClosePopupEscape (popup);
-  deleteClosePopupClickOverlay(popup);
+  document.removeEventListener("keydown", closePopupEscape);
+  popup.removeEventListener("click", closeOnClickOverlay);
 };
+
 //открываем popup по клику на кнопку
 //popup редактирования profile
 popupProfileEditButton.addEventListener("click", function () {
@@ -91,10 +81,8 @@ popupProfileEditButton.addEventListener("click", function () {
 
 popupCardOpenButton.addEventListener("click", function () {
   openPopup(popupAddPlace);
-  buttonAddPlace.classList.add("popup__button-save_disabled");
-  buttonAddPlace.setAttribute('disabled', '');
+  disableButton(buttonAddPlace, validationConfig.inactiveButtonClass);
 });
-
 
 // закрываем поп-ап по клику по кнопке
 //popup редактирования profile
@@ -106,10 +94,9 @@ function closePopupEditProfile() {
 //popup добавления новой карточки
 popupCloseAdd.addEventListener("click", closePopupAddElement);
 
-function closePopupAddElement(validationConfig) {
+function closePopupAddElement() {
   closePopup(popupAddPlace);
-  popupInputTitleAdd.value = '';
-  popupInputImageAdd.value = '';
+  formCreateCard.reset();
 }
 //popup с увеличенной картинкой
 popupCloseZoomImageButton.addEventListener("click", closePopupimgZoom);
@@ -151,7 +138,8 @@ const createCard = (card) => {
   cardClickImageZoom.addEventListener("click", createPopupImage);
   return cardNew;
 };
-////добавляем карточку на страницу
+
+//добавляем карточку на страницу
 const addCard = (card) => {
   cardSection.prepend(createCard(card));
 };
@@ -169,7 +157,7 @@ function handleFormElementSubmit(event) {
     alt: nameElement,
     link: imageElement,
   };
-  // createCard(anotherElement);
+// createCard(anotherElement);
   addCard(anotherElement);
   closePopupAddElement();
   event.target.reset();
@@ -190,5 +178,3 @@ function createPopupImage(event) {
   popupHeadingZoom.textContent = popupImgZoom.alt;
   openPopup(popupZoom);
 }
-
-

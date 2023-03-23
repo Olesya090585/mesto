@@ -20,26 +20,25 @@ const checkInputValidity = (formElement, input, inputErrorClass, errorClass) => 
     hideInputError(errorTextElement, errorClass);
   }
 }
-
 const disableButton = (submitButton, inactiveButtonClass) => {
-  submitButton.classList.remove(inactiveButtonClass);
-  submitButton.disabled = false;
-}
-
-const enableButton = (submitButton, inactiveButtonClass) => {
   submitButton.classList.add(inactiveButtonClass);
   submitButton.disabled = true;
 }
 
-const hasValidInput = (inputList) => {
+const enableButton = (submitButton, inactiveButtonClass) => {
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
+}
+
+const hasInvalidInput = (inputList) => {
   return Array.from(inputList).some((input) => !input.validity.valid);
 }
 
 const toggleButtonState = (submitButton, inactiveButtonClass, inputList) => {
-  if(hasValidInput(inputList)) {
-      enableButton(submitButton, inactiveButtonClass);
+  if(hasInvalidInput(inputList)) {
+    disableButton(submitButton, inactiveButtonClass);
   } else {
-      disableButton(submitButton, inactiveButtonClass);
+    enableButton(submitButton, inactiveButtonClass);
   }
 };
 
@@ -58,7 +57,6 @@ const setEventListeners = (formElement, { submitButtonSelector, inputSelector, i
     });
     });
 }
-
 
 // функция валидации полей (находим поля,
 // вызываем фунцию навешивания слушателей) и
