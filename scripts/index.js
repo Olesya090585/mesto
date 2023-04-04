@@ -1,3 +1,7 @@
+import { Card } from "./card.js";
+import { FormValidator } from "./formvalidator.js";
+export { popupZoom, popupImgZoom, popupHeadingZoom, openPopup };
+
 // popup
 const popup = document.querySelector(".popup");
 const popupEditProfile = document.querySelector(".popup_edit-profile");
@@ -42,6 +46,15 @@ const jobInput = formProfile.querySelector(
 const profilInfoTitle = document.querySelector(".profile-info__title");
 const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
 
+export const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input-text",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button-save_disabled",
+  inputErrorClass: ".popup__input-error_type_",
+  errorClass: "popup__error_visible",
+};
+
 // функция закрытия по клику на overlay
 const closeOnClickOverlay = (evt) => {
   if (evt.target === evt.currentTarget) {
@@ -76,12 +89,19 @@ popupProfileEditButton.addEventListener("click", function () {
   nameInput.value = profilInfoTitle.textContent;
   jobInput.value = profileInfoSubtitle.textContent;
   openPopup(popupEditProfile);
+  validatePopupEdit.disableButton();
 });
-//popup добавления новой карточки
 
+const validatePopupEdit = new FormValidator(formProfile, config);
+validatePopupEdit.enableValidation();
+
+const validatePopupPlace = new FormValidator(formCreateCard, config);
+validatePopupPlace.enableValidation();
+
+//popup добавления новой карточки
 popupCardOpenButton.addEventListener("click", function () {
   openPopup(popupAddPlace);
-  disableButton(buttonAddPlace, validationConfig.inactiveButtonClass);
+  // disableButton(buttonAddPlace, validationConfig.inactiveButtonClass);
 });
 
 // закрываем поп-ап по клику по кнопке
@@ -122,31 +142,20 @@ function handleFormProfileSubmit(evt) {
 //он будет следить за событием “submit” - «отправка»
 formProfile.addEventListener("submit", handleFormProfileSubmit);
 
-//создаем новую карточку
-const createCard = (card) => {
-  const cardNew = cardTemplate.cloneNode(true);
-  const cardName = cardNew.querySelector(".element__text");
-  cardName.textContent = card.name;
-  const cardImage = cardNew.querySelector(".element__img");
-  cardImage.setAttribute("src", card.link);
-  cardImage.setAttribute("alt", card.alt);
-  const cardDeleteButton = cardNew.querySelector(".element__delete_button"); // ищем кнопку не по всему документу, а внутри cardNew - это копия шаблона со всем содержимым карточки - нужно обращатсья к нему
-  cardDeleteButton.addEventListener("click", deleteCard);
-  const cardLikeButton = cardNew.querySelector(".element__like_button"); // ищем кнопку не по всему документу, а внутри cardNew - это копия шаблона со всем содержимым карточки - нужно обращатсья к нему
-  cardLikeButton.addEventListener("click", clickLikeAсtive);
-  const cardClickImageZoom = cardNew.querySelector(".element__img_zoom"); // ищем кнопку не по всему документу, а внутри cardNew - это копия шаблона со всем содержимым карточки - нужно обращатсья к нему
-  cardClickImageZoom.addEventListener("click", createPopupImage);
-  return cardNew;
-};
-
 //добавляем карточку на страницу
-const addCard = (card) => {
-  cardSection.prepend(createCard(card));
-};
+function addCard(initialCards) {
+  // Создадим экземпляр карточки
+  const newCard = new Card(initialCards, "#elementTemplate");
+  // Создаём карточку и возвращаем наружу
+  cardSection.prepend(newCard.generateCard());
+}
+
 //переворачиваем массив и проходим по нему функцией addCard
-initialCards.reverse().forEach(addCard);
+initialCards.forEach(addCard);
+
 //создаем новую карточку по событию submit
 formCreateCard.addEventListener("submit", handleFormElementSubmit);
+
 //функция создания новой карточки из данных в popup
 function handleFormElementSubmit(event) {
   event.preventDefault();
@@ -157,24 +166,8 @@ function handleFormElementSubmit(event) {
     alt: nameElement,
     link: imageElement,
   };
-// createCard(anotherElement);
+  // createCard(anotherElement);
   addCard(anotherElement);
   closePopupAddElement();
   event.target.reset();
-}
-
-//функция удаления элемента
-function deleteCard(event) {
-  event.target.closest(".element").remove();
-}
-// like
-function clickLikeAсtive(event) {
-  event.target.classList.toggle("element__like_active");
-}
-//передаем данные элемента в popup с картинкой и открываем его
-function createPopupImage(event) {
-  popupImgZoom.src = event.target.src;
-  popupImgZoom.alt = event.target.alt;
-  popupHeadingZoom.textContent = popupImgZoom.alt;
-  openPopup(popupZoom);
 }
