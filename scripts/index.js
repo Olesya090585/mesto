@@ -1,15 +1,13 @@
 import { Card } from "./card.js";
+import { initialCards, config } from "./constants.js";
 import { FormValidator } from "./formvalidator.js";
-export { popupZoom, popupImgZoom, popupHeadingZoom, openPopup };
 
 // popup
-const popup = document.querySelector(".popup");
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupAddPlace = document.querySelector(".popup_add-place");
 const popupZoom = document.querySelector(".popup_zoom");
 const popupImgZoom = document.querySelector(".popup__img_zoom");
 const popupHeadingZoom = document.querySelector(".popup__heading_zoom");
-const popupInputError = document.querySelectorAll(".popup__input-text_error");
 // button popup open
 const popupProfileEditButton = document.querySelector(
   ".profile-info__edit-button"
@@ -23,7 +21,6 @@ const popupCloseZoomImageButton = document.querySelector(
 );
 //elements
 const cardSection = document.querySelector(".elements");
-const cardTemplate = document.querySelector("#elementTemplate").content; // записываем в переменную cardTeplate шаблон карточки
 //переменная кнопки создания новой карточки
 const formCreateCard = document.querySelector(".popup__content-add");
 const popupInputTitleAdd = formCreateCard.querySelector(
@@ -32,7 +29,6 @@ const popupInputTitleAdd = formCreateCard.querySelector(
 const popupInputImageAdd = formCreateCard.querySelector(
   ".popup__input-image-add"
 );
-const buttonAddPlace = formCreateCard.querySelector(".popup__button-save-add");
 //переменная формы при сохранении измененных данных в profile
 const formProfile = document.querySelector(".popup__content-edit");
 //находим поля формы в DOM
@@ -45,15 +41,6 @@ const jobInput = formProfile.querySelector(
 //выберите элементы, куда должны быть вставлены значения полей
 const profilInfoTitle = document.querySelector(".profile-info__title");
 const profileInfoSubtitle = document.querySelector(".profile-info__subtitle");
-
-export const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input-text",
-  submitButtonSelector: ".popup__button-save",
-  inactiveButtonClass: "popup__button-save_disabled",
-  inputErrorClass: ".popup__input-error_type_",
-  errorClass: "popup__error_visible",
-};
 
 // функция закрытия по клику на overlay
 const closeOnClickOverlay = (evt) => {
@@ -89,19 +76,20 @@ popupProfileEditButton.addEventListener("click", function () {
   nameInput.value = profilInfoTitle.textContent;
   jobInput.value = profileInfoSubtitle.textContent;
   openPopup(popupEditProfile);
-  validatePopupEdit.disableButton();
+  validatorPopupEdit.disableButton();
 });
 
-const validatePopupEdit = new FormValidator(formProfile, config);
-validatePopupEdit.enableValidation();
+const validatorPopupEdit = new FormValidator(formProfile, config);
+validatorPopupEdit.enableValidation();
 
-const validatePopupPlace = new FormValidator(formCreateCard, config);
-validatePopupPlace.enableValidation();
+const validatorPopupPlace = new FormValidator(formCreateCard, config);
+validatorPopupPlace.enableValidation();
 
 //popup добавления новой карточки
 popupCardOpenButton.addEventListener("click", function () {
   openPopup(popupAddPlace);
-  // disableButton(buttonAddPlace, validationConfig.inactiveButtonClass);
+  validatorPopupPlace.disableButton();
+  formCreateCard.reset();
 });
 
 // закрываем поп-ап по клику по кнопке
@@ -116,7 +104,6 @@ popupCloseAdd.addEventListener("click", closePopupAddElement);
 
 function closePopupAddElement() {
   closePopup(popupAddPlace);
-  formCreateCard.reset();
 }
 //popup с увеличенной картинкой
 popupCloseZoomImageButton.addEventListener("click", closePopupimgZoom);
@@ -145,7 +132,7 @@ formProfile.addEventListener("submit", handleFormProfileSubmit);
 //добавляем карточку на страницу
 function addCard(initialCards) {
   // Создадим экземпляр карточки
-  const newCard = new Card(initialCards, "#elementTemplate");
+  const newCard = new Card(initialCards, "#elementTemplate", handleOpenPopup);
   // Создаём карточку и возвращаем наружу
   cardSection.prepend(newCard.generateCard());
 }
@@ -169,5 +156,14 @@ function handleFormElementSubmit(event) {
   // createCard(anotherElement);
   addCard(anotherElement);
   closePopupAddElement();
-  event.target.reset();
 }
+
+function handleOpenPopup(link, alt, name){
+  popupImgZoom.src = link;
+  popupImgZoom.alt = alt;
+  popupHeadingZoom.textContent = name;
+  openPopup(popupZoom);
+}
+
+
+export { popupZoom, popupImgZoom, popupHeadingZoom, openPopup };

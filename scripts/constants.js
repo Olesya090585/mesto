@@ -1,5 +1,5 @@
 //массив карточек
-const initialCards = [
+export const initialCards = [
   {
     name: "Архыз",
     alt: "Архыз",
@@ -31,3 +31,12 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+export const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input-text",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button-save_disabled",
+  inputErrorClass: ".popup__input-error_type_",
+  errorClass: "popup__error_visible",
+};

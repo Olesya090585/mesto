@@ -1,14 +1,11 @@
-import {
-  popupZoom,
-  popupImgZoom,
-  popupHeadingZoom,
-  openPopup,
-} from "./index.js";
+
 
 export class Card {
-  constructor(data, cardTemplate) {
+  constructor(data, cardTemplate, handleOpenPopup) {
     this._name = data.name;
     this._link = data.link;
+    this._alt = data.alt;
+    this._handleOpenPopup = handleOpenPopup;
     this.cardTemplate = cardTemplate;
   }
   _getTemplate() {
@@ -28,13 +25,6 @@ export class Card {
     this._element.remove();
   }
 
-  _createPopupImage() {
-    openPopup(popupZoom);
-    popupImgZoom.src = this._link;
-    popupImgZoom.alt = this._name;
-    popupHeadingZoom.textContent = this._name;
-  }
-
   _setEventListeners() {
     this._cardLikeButton.addEventListener("click", () => {
       this._clickLikeAсtive();
@@ -45,7 +35,8 @@ export class Card {
     });
 
     this._cardClickImageZoom.addEventListener("click", () => {
-      this._createPopupImage();
+      // this._openPopupImage();
+      this._handleOpenPopup(this._link, this._alt, this._name);
     });
   }
 
@@ -53,7 +44,7 @@ export class Card {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector(".element__img");
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
+    this._cardImage.alt = this._alt;
     this._cardName = this._element.querySelector(".element__text");
     this._cardName.textContent = this._name;
     this._cardLikeButton = this._element.querySelector(".element__like_button");
