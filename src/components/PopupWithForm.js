@@ -1,12 +1,12 @@
-import { config } from "./constants.js";
+import { validationConfig } from "../utils/constants.js";
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, { handleFormSubmit }) {
     super(popupSelector);
 
-    this._popupForm = this._popupElement.querySelector(config.formSelector);
-    this._inputList = this._popupElement.querySelectorAll(config.inputSelector);
+    this._popupForm = this._popupElement.querySelector(validationConfig.formSelector);
+    this._inputList = this._popupElement.querySelectorAll(validationConfig.inputSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._formValues = {};
   }
@@ -21,9 +21,7 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     this._popupElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      // const inputValues = this._getInputValues();
       this._handleFormSubmit(this._getInputValues());
-      console.log(this._formValues);
       this.close();
     });
     super.setEventListeners();
