@@ -1,11 +1,9 @@
-
-
 export class Card {
-  constructor(data, cardTemplate, handleOpenPopup) {
-    this._name = data.name;
-    this._link = data.link;
-    this._alt = data.alt;
-    this._handleOpenPopup = handleOpenPopup;
+  constructor(items, cardTemplate, { handleCardClick }) {
+    this._name = items.name;
+    this._link = items.link;
+    this._alt = items.name;
+    this._handleCardClick = handleCardClick;
     this.cardTemplate = cardTemplate;
   }
   _getTemplate() {
@@ -35,8 +33,7 @@ export class Card {
     });
 
     this._cardClickImageZoom.addEventListener("click", () => {
-      // this._openPopupImage();
-      this._handleOpenPopup(this._link, this._alt, this._name);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
