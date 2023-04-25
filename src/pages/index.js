@@ -6,7 +6,7 @@ import { Section } from "../components/Section.js";
 // import { Popup } from "./Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
-import { UserInfo } from "../components/UzerInfo.js";
+import { UserInfo } from "../components/UserInfo.js";
 import {
   popupProfileEditButton,
   popupCardOpenButton,
