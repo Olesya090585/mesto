@@ -30,11 +30,11 @@ export class Card {
 
   deleteCard() {
     this._element.remove();
+    this._element = null;
   }
 
   isLiked() {
-    const userLikeCard = this._likes.find((user) => user._id === this._userId);
-    return userLikeCard;
+    return this._likes.find((user) => user._id === this._userId);
   }
 
   _addLikeCard() {
@@ -47,8 +47,7 @@ export class Card {
 
   setCardLikes(newLikes) {
     this._likes = newLikes;
-    const likeCountCard = this._element.querySelector(".element__counter-like");
-    likeCountCard.textContent = this._likes.length;
+    this._likeCountCard.textContent = this._likes.length;
 
     if (this.isLiked()) {
       this._addLikeCard();
@@ -81,6 +80,7 @@ export class Card {
     this._cardDeleteButton = this._element.querySelector(
       ".element__delete_button"
     );
+    this._likeCountCard = this._element.querySelector(".element__counter-like");
 
     if (this._ownerId != this._userId) {
       this._cardDeleteButton.remove();

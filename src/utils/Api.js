@@ -1,21 +1,21 @@
 export class Api {
   constructor(data) {
-    this._baseUrl = data.baseUrl
-    this._headers = data.headers
+    this._baseUrl = data.baseUrl;
+    this._headers = data.headers;
   }
 
-  _checkRequest(res){
+  _checkRequest(res) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  async getUserData (){
+  async getUserData() {
     const res = await fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   async editUserInfo(data) {
@@ -26,8 +26,8 @@ export class Api {
         name: data.name,
         about: data.about,
       }),
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   async updateAvatar(data) {
@@ -35,17 +35,17 @@ export class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.avatar
+        avatar: data.avatar,
       }),
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   async getInitialCards() {
     const res = await fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   async addNewCard(data) {
@@ -56,16 +56,16 @@ export class Api {
         name: data.name,
         link: data.link,
       }),
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   async deleteCard(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   //метод удаления лайка
@@ -73,8 +73,8 @@ export class Api {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 
   //метод добавления лайка
@@ -82,9 +82,7 @@ export class Api {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    })
-    return this._checkRequest(res)
+    });
+    return this._checkRequest(res);
   }
 }
-
-

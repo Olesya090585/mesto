@@ -20,7 +20,7 @@ export class UserInfo {
     this._id = data.id;
   }
 
-  getuserId(){
+  getUserId(){
     return this._id;
   }
 }
